@@ -156,5 +156,87 @@ namespace CircularManagementSystem
             }
             return "";
         }
+        public DataTable DisplayEmployee()
+        {
+            SqlConnection connection = new SqlConnection(connectionstring);
+            using (SqlCommand command = new SqlCommand("DISPLAY_EMPLOYEE", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter sda = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                sda.Fill(dataTable);
+                return dataTable;
+            }
+        }
+        public void DeleteEmployee(int employeeId)
+        {
+            SqlConnection con = new SqlConnection(connectionstring);
+            con.Open();
+            using (SqlCommand cmd = new SqlCommand("DELETE_EMPLOYEE", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@employeeId", employeeId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void UpdateEmployee(int id,string employeePhone,string employeeName)
+        {
+            SqlConnection con = new SqlConnection(connectionstring);
+            con.Open();
+            using (SqlCommand cmd = new SqlCommand("SP_UPDATE_EMPLOYEE", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@employeeId", id);
+                cmd.Parameters.AddWithValue("@name", employeeName);
+                cmd.Parameters.AddWithValue("@phoneNumber", employeePhone);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public DataTable DisplayDepartment()
+        {
+            SqlConnection connection = new SqlConnection(connectionstring);
+            using (SqlCommand command = new SqlCommand("DISPLAY_DEPARTMENT", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter sda = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                sda.Fill(dataTable);
+                return dataTable;
+            }
+        }
+        public void DeleteDepartment(int departmentId)
+        {
+            SqlConnection con = new SqlConnection(connectionstring);
+            con.Open();
+            using (SqlCommand cmd = new SqlCommand("SP_DELETE_DEPARTMENT", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@departmentId", departmentId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void UpdateDepartment(int id,string departmentName)
+        {
+            SqlConnection con = new SqlConnection(connectionstring);
+            con.Open();
+            using (SqlCommand cmd = new SqlCommand("SP_UPDATE_DEPARTMENT", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@departmentId", id);
+                cmd.Parameters.AddWithValue("@departmentName", departmentName);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void InsertDepartment(string departmentName)
+        {
+            SqlConnection connection = new SqlConnection(connectionstring);
+            connection.Open();
+            using(SqlCommand command=new SqlCommand("SP_INSERT_DEPARTMENT", connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@departmentName", departmentName);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
