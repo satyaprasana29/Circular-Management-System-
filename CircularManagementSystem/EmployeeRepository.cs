@@ -17,11 +17,11 @@ namespace CircularManagementSystem
             SqlDataAdapter dataAdapter = new SqlDataAdapter();
             using (SqlCommand command = new SqlCommand(sql, sqlConnection))
             {
-                command.CommandType = CommandType.StoredProcedure;
-                SqlParameter parameter = new SqlParameter();
+                command.CommandType     = CommandType.StoredProcedure;
+                SqlParameter parameter  = new SqlParameter();
                 parameter.ParameterName = "@name";
-                parameter.Value = name;
-                parameter.SqlDbType = SqlDbType.VarChar;
+                parameter.Value         = name;
+                parameter.SqlDbType     = SqlDbType.VarChar;
                 command.Parameters.Add(parameter);
                 parameter = new SqlParameter();
                 parameter.ParameterName = "@phoneNumber";
