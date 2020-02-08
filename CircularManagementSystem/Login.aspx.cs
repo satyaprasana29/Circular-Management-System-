@@ -1,4 +1,5 @@
 ﻿using System;
+using CircularManagementSystem.BL;
 namespace CircularManagementSystem
 {
     public partial class Login : System.Web.UI.Page
@@ -8,7 +9,7 @@ namespace CircularManagementSystem
         }
         protected void Submit_Click(object sender, EventArgs e)
         {
-            EmployeeRepository employeeRepository = new EmployeeRepository();
+            EmployeeBL employeeRepository = new EmployeeBL();
             string userId = UserId.Text;
             string password = Password.Text;
             string roll = employeeRepository.Login(userId, password);

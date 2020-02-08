@@ -2,12 +2,12 @@
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-
+using CircularManagementSystem.BL;
 namespace CircularManagementSystem
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        EmployeeRepository employeeRepository = new EmployeeRepository();
+        EmployeeBL employee = new EmployeeBL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -17,7 +17,7 @@ namespace CircularManagementSystem
         }
         protected void FillData()
         {
-            DataTable employeeTable = employeeRepository.DisplayEmployee();
+            DataTable employeeTable = employee.DisplayEmployee();
             employeeView.DataSource = employeeTable;
             employeeView.DataBind();
         }
@@ -25,7 +25,7 @@ namespace CircularManagementSystem
         {
             
             int employeeId = Convert.ToInt16(employeeView.DataKeys[e.RowIndex].Values["employeeId"].ToString());
-            employeeRepository.DeleteEmployee(employeeId);
+            employee.DeleteEmployee(employeeId);
             FillData();
         }
         protected void EmployeeView_RowEditing(object sender, GridViewEditEventArgs e)
@@ -43,7 +43,7 @@ namespace CircularManagementSystem
             string txtEmployeename = (employeeView.Rows[e.RowIndex].FindControl("txtName") as TextBox).Text;
             string txtEmployeePhone =(employeeView.Rows[e.RowIndex].FindControl("txtPhone") as TextBox).Text;
             int id = Convert.ToInt16(employeeView.DataKeys[e.RowIndex].Values["employeeId"].ToString());
-            employeeRepository.UpdateEmployee(id, txtEmployeePhone, txtEmployeename);
+            employee.UpdateEmployee(id, txtEmployeePhone, txtEmployeename);
             employeeView.EditIndex = -1;
             FillData();
         }

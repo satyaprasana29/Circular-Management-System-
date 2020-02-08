@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using CircularManagementSystem.BL;
 namespace CircularManagementSystem
 {
     public partial class AddEmployee : System.Web.UI.Page
     {
-        EmployeeRepository employee = new EmployeeRepository();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -15,8 +16,8 @@ namespace CircularManagementSystem
         }
         protected void BindListData()
         {
-
-            SortedList<int, string> temp = new SortedList<int, string>(employee.GetDepartment());
+            DepartmentBL department = new DepartmentBL();
+            SortedList<int, string> temp = new SortedList<int, string>(department.GetDepartment());
             foreach (KeyValuePair<int, string> keyValuePair in temp)
             {
                 ListItem listItem = new ListItem(keyValuePair.Key + " " + keyValuePair.Value);
@@ -26,6 +27,7 @@ namespace CircularManagementSystem
 
         protected void Submit_Button(object sender, EventArgs e)
         {
+            EmployeeBL employee = new EmployeeBL();
             string name = employeename.Text;
             string phoneNumber = employeephoneNumber.Text;
             string email = emailId.Text;

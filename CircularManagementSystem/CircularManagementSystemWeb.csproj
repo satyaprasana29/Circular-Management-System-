@@ -90,7 +90,6 @@
     <Compile Include="DepartmentGridView.aspx.designer.cs">
       <DependentUpon>DepartmentGridView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -137,6 +136,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CircularManagementSystem.BL\CircularManagementSystem.BL.csproj">
+      <Project>{c559be21-cce7-4827-b9df-ae96e70a14d3}</Project>
+      <Name>CircularManagementSystem.BL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

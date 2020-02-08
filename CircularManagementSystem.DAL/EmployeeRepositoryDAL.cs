@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-
-namespace CircularManagementSystem
+namespace CircularManagementSystem.DAL
 {
-    class EmployeeRepository
+    public class EmployeeRepositoryDAL
     {
-        string connectionstring = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+        DataBaseDetails dataBaseDetails = new DataBaseDetails();
         public int AddEmployees(string name, string phoneNumber, int dept_id, int manager_id, string employeeDesignation)
         {
-            SqlConnection sqlConnection = new SqlConnection(connectionstring);
+            SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
             string sql = "INSERT_RECORD";
             int result = 0;
             SqlDataAdapter dataAdapter = new SqlDataAdapter();
             using (SqlCommand command = new SqlCommand(sql, sqlConnection))
             {
-                command.CommandType     = CommandType.StoredProcedure;
-                SqlParameter parameter  = new SqlParameter();
+                command.CommandType = CommandType.StoredProcedure;
+                SqlParameter parameter = new SqlParameter();
                 parameter.ParameterName = "@name";
-                parameter.Value         = name;
-                parameter.SqlDbType     = SqlDbType.VarChar;
+                parameter.Value = name;
+                parameter.SqlDbType = SqlDbType.VarChar;
                 command.Parameters.Add(parameter);
                 parameter = new SqlParameter();
                 parameter.ParameterName = "@phoneNumber";
@@ -53,11 +50,11 @@ namespace CircularManagementSystem
         public int AddLogin(string email, string password, string name, string phoneNumber, int manager_id)
         {
             int result = 0;
-            SqlConnection sqlConnection = new SqlConnection(connectionstring);
             string sql = "INSERT_USER";
             SqlDataAdapter dataAdapter = new SqlDataAdapter();
             string query = "GET_EMPLOYEEID";
             object employeeId;
+            SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
             using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
             {
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -118,27 +115,10 @@ namespace CircularManagementSystem
             }
             return result;
         }
-        public SortedList<int, string> GetDepartment()
-        {
-            SortedList<int, string> departmentDetails = new SortedList<int, string>();
-            SqlConnection sqlConnection = new SqlConnection(connectionstring);
-            sqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("DISPLAY_DEPARTMENT", sqlConnection);
-            using (SqlDataReader reader = sqlCommand.ExecuteReader())
-            {
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        departmentDetails.Add(reader.GetInt32(0), reader.GetString(1));
-                    }
-                }
-            }
-            return departmentDetails;
-        }
+
         public string Login(string userName, string password)
         {
-            SqlConnection sqlConnection = new SqlConnection(connectionstring);
+            SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
             sqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("USER_DETAILS", sqlConnection);
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
@@ -158,8 +138,8 @@ namespace CircularManagementSystem
         }
         public DataTable DisplayEmployee()
         {
-            SqlConnection connection = new SqlConnection(connectionstring);
-            using (SqlCommand command = new SqlCommand("DISPLAY_EMPLOYEE", connection))
+            SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
+            using (SqlCommand command = new SqlCommand("DISPLAY_EMPLOYEE", sqlConnection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter sda = new SqlDataAdapter(command);
@@ -170,20 +150,20 @@ namespace CircularManagementSystem
         }
         public void DeleteEmployee(int employeeId)
         {
-            SqlConnection con = new SqlConnection(connectionstring);
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand("DELETE_EMPLOYEE", con))
+            SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
+            sqlConnection.Open();
+            using (SqlCommand cmd = new SqlCommand("DELETE_EMPLOYEE", sqlConnection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@employeeId", employeeId);
                 cmd.ExecuteNonQuery();
             }
         }
-        public void UpdateEmployee(int id,string employeePhone,string employeeName)
+        public void UpdateEmployee(int id, string employeePhone, string employeeName)
         {
-            SqlConnection con = new SqlConnection(connectionstring);
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand("SP_UPDATE_EMPLOYEE", con))
+            SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
+            sqlConnection.Open();
+            using (SqlCommand cmd = new SqlCommand("SP_UPDATE_EMPLOYEE", sqlConnection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@employeeId", id);
@@ -192,51 +172,6 @@ namespace CircularManagementSystem
                 cmd.ExecuteNonQuery();
             }
         }
-        public DataTable DisplayDepartment()
-        {
-            SqlConnection connection = new SqlConnection(connectionstring);
-            using (SqlCommand command = new SqlCommand("DISPLAY_DEPARTMENT", connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter sda = new SqlDataAdapter(command);
-                DataTable dataTable = new DataTable();
-                sda.Fill(dataTable);
-                return dataTable;
-            }
-        }
-        public void DeleteDepartment(int departmentId)
-        {
-            SqlConnection con = new SqlConnection(connectionstring);
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand("SP_DELETE_DEPARTMENT", con))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@departmentId", departmentId);
-                cmd.ExecuteNonQuery();
-            }
-        }
-        public void UpdateDepartment(int id,string departmentName)
-        {
-            SqlConnection con = new SqlConnection(connectionstring);
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand("SP_UPDATE_DEPARTMENT", con))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@departmentId", id);
-                cmd.Parameters.AddWithValue("@departmentName", departmentName);
-                cmd.ExecuteNonQuery();
-            }
-        }
-        public void InsertDepartment(string departmentName)
-        {
-            SqlConnection connection = new SqlConnection(connectionstring);
-            connection.Open();
-            using(SqlCommand command=new SqlCommand("SP_INSERT_DEPARTMENT", connection))
-            {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@departmentName", departmentName);
-                command.ExecuteNonQuery();
-            }
-        }
+
     }
 }

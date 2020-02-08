@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularManagementSystem", "CircularManagementSystem\CircularManagementSystem.csproj", "{C96EC262-4283-4B23-8019-9B8A2707102B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularManagementSystemWeb", "CircularManagementSystem\CircularManagementSystemWeb.csproj", "{C96EC262-4283-4B23-8019-9B8A2707102B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularManagementSystem.Common", "CircularManagementSystem.Common\CircularManagementSystem.Common.csproj", "{DE4EA955-71EB-4437-A9A6-8DC29E62E870}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularManagementSystem.Entity", "CircularManagementSystem.Entity\CircularManagementSystem.Entity.csproj", "{2E9FB412-7FE9-43D1-AE64-52CF214ED048}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularManagementSystem.BL", "CircularManagementSystem.BL\CircularManagementSystem.BL.csproj", "{C559BE21-CCE7-4827-B9DF-AE96E70A14D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularManagementSystem.DAL", "CircularManagementSystem.DAL\CircularManagementSystem.DAL.csproj", "{AB6FD7B2-F218-4632-B854-08143E54058F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{C96EC262-4283-4B23-8019-9B8A2707102B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C96EC262-4283-4B23-8019-9B8A2707102B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C96EC262-4283-4B23-8019-9B8A2707102B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE4EA955-71EB-4437-A9A6-8DC29E62E870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE4EA955-71EB-4437-A9A6-8DC29E62E870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE4EA955-71EB-4437-A9A6-8DC29E62E870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE4EA955-71EB-4437-A9A6-8DC29E62E870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E9FB412-7FE9-43D1-AE64-52CF214ED048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E9FB412-7FE9-43D1-AE64-52CF214ED048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E9FB412-7FE9-43D1-AE64-52CF214ED048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E9FB412-7FE9-43D1-AE64-52CF214ED048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C559BE21-CCE7-4827-B9DF-AE96E70A14D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C559BE21-CCE7-4827-B9DF-AE96E70A14D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C559BE21-CCE7-4827-B9DF-AE96E70A14D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C559BE21-CCE7-4827-B9DF-AE96E70A14D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB6FD7B2-F218-4632-B854-08143E54058F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB6FD7B2-F218-4632-B854-08143E54058F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB6FD7B2-F218-4632-B854-08143E54058F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB6FD7B2-F218-4632-B854-08143E54058F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
