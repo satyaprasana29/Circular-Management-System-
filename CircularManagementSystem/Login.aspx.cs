@@ -15,7 +15,7 @@ namespace CircularManagementSystem
             string roll = employeeRepository.Login(userId, password);
             if (roll == "Admin")
             {
-                Response.Redirect("AddEmployee.aspx");
+                Response.Redirect("Admin.aspx");
             }
             else if (roll == "User")
             {

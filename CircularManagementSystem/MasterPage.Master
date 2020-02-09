@@ -15,8 +15,6 @@
             <asp:ContentPlaceHolder ID="contentLogin" runat="server">
             </asp:ContentPlaceHolder>
             <asp:HyperLink ID="Login" runat="server" NavigateUrl="~/Login.aspx" Text="Login"></asp:HyperLink>
-            <asp:HyperLink ID="EmployeeGrid" runat="server" NavigateUrl="~/GridView.aspx" Text="EmployeeView"></asp:HyperLink>
-            <asp:HyperLink ID="Grid" runat="server" NavigateUrl="~/DepartmentGridView.aspx" Text="DepartmentView"></asp:HyperLink>
          </div>
     </form>
 </body>
