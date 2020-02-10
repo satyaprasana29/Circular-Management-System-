@@ -33,13 +33,13 @@ namespace CircularManagementSystem
         protected global::System.Web.UI.HtmlControls.HtmlForm master;
 
         /// <summary>
-        /// contentLogin control.
+        /// contentMaster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder contentLogin;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder contentMaster;
 
         /// <summary>
         /// Login control.

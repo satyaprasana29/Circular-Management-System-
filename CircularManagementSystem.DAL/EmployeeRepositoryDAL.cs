@@ -9,7 +9,7 @@ namespace CircularManagementSystem.DAL
         public int AddEmployees(string name, string phoneNumber, int dept_id, int manager_id, string employeeDesignation)
         {
             SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
-            string sql = "INSERT_RECORD";
+            string sql = "SP_INSERT_RECORD";
             int result = 0;
             SqlDataAdapter dataAdapter = new SqlDataAdapter();
             using (SqlCommand command = new SqlCommand(sql, sqlConnection))
@@ -23,7 +23,7 @@ namespace CircularManagementSystem.DAL
                 parameter = new SqlParameter();
                 parameter.ParameterName = "@phoneNumber";
                 parameter.Value = phoneNumber;
-                parameter.SqlDbType = SqlDbType.VarChar;
+                parameter.SqlDbType = SqlDbType.BigInt;
                 command.Parameters.Add(parameter);
                 parameter = new SqlParameter();
                 parameter.ParameterName = "@Dept_id";
@@ -50,9 +50,9 @@ namespace CircularManagementSystem.DAL
         public int AddLogin(string email, string password, string name, string phoneNumber, int manager_id)
         {
             int result = 0;
-            string sql = "INSERT_USER";
+            string sql = "SP_INSERT_USER";
             SqlDataAdapter dataAdapter = new SqlDataAdapter();
-            string query = "GET_EMPLOYEEID";
+            string query = "SP_GET_EMPLOYEEID";
             object employeeId;
             SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
             using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
@@ -94,7 +94,7 @@ namespace CircularManagementSystem.DAL
                 if (manager_id == 2)
                 {
                     parameter = new SqlParameter();
-                    parameter.ParameterName = "@roll";
+                    parameter.ParameterName = "@role";
                     parameter.Value = "User";
                     parameter.SqlDbType = SqlDbType.VarChar;
                     command.Parameters.Add(parameter);
@@ -102,8 +102,8 @@ namespace CircularManagementSystem.DAL
                 else if (manager_id == 1)
                 {
                     parameter = new SqlParameter();
-                    parameter.ParameterName = "@roll";
-                    parameter.Value = "Admin";
+                    parameter.ParameterName = "@role";
+                    parameter.Value = "Manager";
                     parameter.SqlDbType = SqlDbType.VarChar;
                     command.Parameters.Add(parameter);
                 }
@@ -120,7 +120,7 @@ namespace CircularManagementSystem.DAL
         {
             SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
             sqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("USER_DETAILS", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("SP_USER_DETAILS", sqlConnection);
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 if (reader.HasRows)
@@ -139,7 +139,7 @@ namespace CircularManagementSystem.DAL
         public DataTable DisplayEmployee()
         {
             SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
-            using (SqlCommand command = new SqlCommand("DISPLAY_EMPLOYEE", sqlConnection))
+            using (SqlCommand command = new SqlCommand("SP_DISPLAY_EMPLOYEE", sqlConnection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter sda = new SqlDataAdapter(command);
@@ -152,7 +152,7 @@ namespace CircularManagementSystem.DAL
         {
             SqlConnection sqlConnection = dataBaseDetails.ConnectionString();
             sqlConnection.Open();
-            using (SqlCommand cmd = new SqlCommand("DELETE_EMPLOYEE", sqlConnection))
+            using (SqlCommand cmd = new SqlCommand("SP_DELETE_EMPLOYEE", sqlConnection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@employeeId", employeeId);

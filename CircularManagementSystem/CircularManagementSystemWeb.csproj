@@ -74,7 +74,7 @@
     <Content Include="Login.aspx" />
     <Content Include="StartMaster.aspx" />
     <Content Include="Web.config" />
-    <Content Include="GridView.aspx" />
+    <Content Include="EmployeeGridView.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddEmployee.aspx.cs">
@@ -123,12 +123,12 @@
     <Compile Include="StartMaster.aspx.designer.cs">
       <DependentUpon>StartMaster.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GridView.aspx.cs">
-      <DependentUpon>GridView.aspx</DependentUpon>
+    <Compile Include="EmployeeGridView.aspx.cs">
+      <DependentUpon>EmployeeGridView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GridView.aspx.designer.cs">
-      <DependentUpon>GridView.aspx</DependentUpon>
+    <Compile Include="EmployeeGridView.aspx.designer.cs">
+      <DependentUpon>EmployeeGridView.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

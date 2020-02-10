@@ -10,12 +10,12 @@ namespace CircularManagementSystem
         protected void Submit_Click(object sender, EventArgs e)
         {
             EmployeeBL employeeRepository = new EmployeeBL();
-            string userId = UserId.Text;
+            string userId = txtUserId.Text;
             string password = Password.Text;
             string roll = employeeRepository.Login(userId, password);
             if (roll == "Admin")
             {
-                Response.Redirect("Admin.aspx");
+                Response.Redirect("AddEmployee.aspx");
             }
             else if (roll == "User")
             {

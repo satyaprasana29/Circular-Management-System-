@@ -12,7 +12,7 @@ namespace CircularManagementSystem.DAL
             SortedList<int, string> departmentDetails = new SortedList<int, string>();
             SqlConnection sqlConnection = baseDetails.ConnectionString();
             sqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("DISPLAY_DEPARTMENT", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("SP_DISPLAY_DEPARTMENT", sqlConnection);
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
             {
                 if (reader.HasRows)
@@ -28,7 +28,7 @@ namespace CircularManagementSystem.DAL
         public DataTable DisplayDepartment()
         {
             SqlConnection sqlConnection = baseDetails.ConnectionString();
-            using (SqlCommand command = new SqlCommand("DISPLAY_DEPARTMENT", sqlConnection))
+            using (SqlCommand command = new SqlCommand("SP_DISPLAY_DEPARTMENT", sqlConnection))
             {
                 command.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter sda = new SqlDataAdapter(command);
